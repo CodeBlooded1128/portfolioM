@@ -1,4 +1,4 @@
-/* ===== RESET ===== */
+/* ================= BASE STYLES ================= */
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +10,8 @@ body {
   background: #ffffff;
   color: #111;
   transition: background 0.3s, color 0.3s;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
 }
 
 /* ===== NAVBAR ===== */
@@ -23,6 +25,7 @@ body {
   align-items: center;
   background: #ffffff;
   border-bottom: 1px solid #e5e5e5;
+  z-index: 1000; /* Ensure nav stays on top */
 }
 
 .logo {
@@ -30,7 +33,6 @@ body {
   letter-spacing: 2px;
 }
 
-/* NAV LINKS */
 nav ul {
   list-style: none;
   display: flex;
@@ -62,7 +64,6 @@ nav ul li a:hover::after {
   width: 100%;
 }
 
-/* DARK MODE BUTTON */
 #themeToggle {
   border: 1px solid #111;
   background: none;
@@ -73,23 +74,29 @@ nav ul li a:hover::after {
 
 /* ===== HERO ===== */
 .hero {
-  height: 100vh;
+  min-height: 100vh; /* Use min-height so content doesn't get cut off on small screens */
   padding-top: 140px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
 }
 
 .hero h1 {
   font-size: 46px;
   margin-bottom: 20px;
+  max-width: 800px; /* Prevent text spanning too wide */
+  padding: 0 10px;
 }
 
 .hero p {
   color: #555;
   font-size: 18px;
   margin-bottom: 30px;
+  padding: 0 10px;
 }
 
-.btnWork {
+.hero button {
   padding: 14px 36px;
   border: none;
   background: #111;
@@ -116,6 +123,39 @@ nav ul li a:hover::after {
   color: #555;
 }
 
+/* ===== WORK GRID (For work.html) ===== */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.work-card {
+  border: 1px solid #e5e5e5;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.work-card:hover {
+  transform: translateY(-5px);
+}
+
+.work-image {
+  width: 100%;
+  height: 200px;
+  background-color: #f0f0f0;
+  margin-bottom: 20px;
+}
+
+.work-card a {
+  text-decoration: none;
+  color: #111;
+  font-weight: bold;
+}
+
 /* ===== FOOTER ===== */
 footer {
   text-align: center;
@@ -124,7 +164,7 @@ footer {
   color: #555;
 }
 
-/* ===== DARK MODE ===== */
+/* ================= DARK MODE ================= */
 body.dark {
   background: #111;
   color: #f1f1f1;
@@ -152,12 +192,22 @@ body.dark .section.alt {
   background: #1a1a1a;
 }
 
+body.dark .work-card {
+  border-color: #333;
+}
+body.dark .work-image {
+  background-color: #222;
+}
+body.dark .work-card a {
+  color: #fff;
+}
+
 body.dark footer {
   border-top: 1px solid #333;
   color: #aaa;
 }
 
-body.dark .btnWork {
+body.dark button {
   background: #f1f1f1;
   color: #111;
 }
@@ -165,4 +215,48 @@ body.dark .btnWork {
 body.dark #themeToggle {
   border-color: #f1f1f1;
   color: #f1f1f1;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+/* THIS MUST BE AT THE VERY BOTTOM */
+
+@media (max-width: 768px) {
+  /* Navbar Changes */
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+    position: relative; /* Un-fix header so it doesn't cover screen */
+  }
+
+  .navbar .logo {
+    margin-bottom: 15px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  nav ul li {
+    margin: 5px 10px;
+  }
+
+  /* Text Resizing */
+  .hero {
+    padding-top: 40px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .section {
+    padding: 60px 20px;
+  }
+
+  /* Work Grid Adjustments */
+  .work-grid {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+  }
 }
