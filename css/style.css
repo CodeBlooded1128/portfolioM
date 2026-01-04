@@ -1,0 +1,168 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #ffffff;
+  color: #111;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* NAV LINKS */
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 30px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #111;
+  font-size: 14px;
+  position: relative;
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 1px;
+  background: #111;
+  transition: 0.3s;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* DARK MODE BUTTON */
+#themeToggle {
+  border: 1px solid #111;
+  background: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  height: 100vh;
+  padding-top: 140px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 46px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  color: #555;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.btnWork {
+  padding: 14px 36px;
+  border: none;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 120px 20px;
+  text-align: center;
+}
+
+.section.alt {
+  background: #f7f7f7;
+}
+
+.section h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.section p {
+  color: #555;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 30px;
+  border-top: 1px solid #e5e5e5;
+  color: #555;
+}
+
+/* ===== DARK MODE ===== */
+body.dark {
+  background: #111;
+  color: #f1f1f1;
+}
+
+body.dark .navbar {
+  background: #111;
+  border-bottom: 1px solid #333;
+}
+
+body.dark nav ul li a {
+  color: #f1f1f1;
+}
+
+body.dark nav ul li a::after {
+  background: #f1f1f1;
+}
+
+body.dark .hero p,
+body.dark .section p {
+  color: #aaa;
+}
+
+body.dark .section.alt {
+  background: #1a1a1a;
+}
+
+body.dark footer {
+  border-top: 1px solid #333;
+  color: #aaa;
+}
+
+body.dark .btnWork {
+  background: #f1f1f1;
+  color: #111;
+}
+
+body.dark #themeToggle {
+  border-color: #f1f1f1;
+  color: #f1f1f1;
+}
