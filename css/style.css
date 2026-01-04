@@ -260,3 +260,42 @@ body.dark #themeToggle {
     grid-template-columns: 1fr; /* 1 column on mobile */
   }
 }
+
+/* ================= DOWNLOAD BUTTON STYLES ================= */
+
+/* 1. Group the buttons so they have space between them */
+.hero-buttons {
+  display: flex;
+  gap: 20px; /* Space between the two buttons */
+  justify-content: center; /* Center them */
+  margin-top: 20px;
+}
+
+/* 2. Style the Link to look like a Button */
+.btn-download {
+  padding: 14px 36px;
+  border: 1px solid #111;
+  background: transparent; /* Transparent background for "Ghost button" look */
+  color: #111;
+  text-decoration: none; /* Remove underline */
+  font-size: 14px; /* Match standard button font size */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.btn-download:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* --- Dark Mode Adjustments for the new button --- */
+body.dark .btn-download {
+  border-color: #f1f1f1;
+  color: #f1f1f1;
+}
+
+body.dark .btn-download:hover {
+  background: #f1f1f1;
+  color: #111;
+}
