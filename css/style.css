@@ -74,12 +74,15 @@ nav ul li a:hover::after {
 
 /* ===== HERO ===== */
 .hero {
-  min-height: 100vh; /* Use min-height so content doesn't get cut off on small screens */
-  padding-top: 140px;
+  /* CHANGED: Changed from 100vh to auto so it fits the content size */
+  min-height: auto;
+  padding-top: 100px;
+  /* ADDED: Adds a little breathing room at the bottom */
+  padding-bottom: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center horizontally */
+  align-items: center;
 }
 
 .hero h1 {
@@ -106,7 +109,8 @@ nav ul li a:hover::after {
 
 /* ===== SECTIONS ===== */
 .section {
-  padding: 120px 20px;
+  /* CHANGED: Reduced from 120px to 60px to remove the huge gap */
+  padding: 60px 20px;
   text-align: center;
 }
 
@@ -298,4 +302,58 @@ body.dark .btn-download {
 body.dark .btn-download:hover {
   background: #f1f1f1;
   color: #111;
+}
+
+/* Container holding both sides */
+.container-split {
+  display: flex; /* Sets them side-by-side */
+  align-items: center; /* Centers text vertically */
+  gap: 40px; /* Adds space between text and image */
+  max-width: 1100px; /* Limits width for large screens */
+  margin: 0 auto 50px auto; /* 0px on top, 50px on bottom */
+  padding: 0 20px;
+}
+
+/* Left Side (Text) */
+.split-text {
+  flex: 1; /* Takes up 1 "share" of space */
+}
+
+.split-text h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.split-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 5px;
+  /* ADD THIS LINE: */
+  text-align: justify;
+}
+
+/* Right Side (Image) */
+.split-image {
+  flex: 1; /* Takes up 1 "share" of space */
+  text-align: center; /* Centers image within its half */
+}
+
+.split-image img {
+  width: 100%; /* Responsive width */
+  max-width: 400px; /* Prevents image from getting too huge */
+  border-radius: 10px; /* Optional: rounded corners */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Optional: shadow */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .container-split {
+    flex-direction: column; /* Stack them vertically */
+    text-align: center; /* Center text for mobile */
+  }
+
+  /* Optional: Use column-reverse if you want image ON TOP on mobile */
+  /* .container-split { flex-direction: column-reverse; } */
 }
