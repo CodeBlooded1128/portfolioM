@@ -221,6 +221,18 @@ body.dark #themeToggle {
   color: #f1f1f1;
 }
 
+/* ================= FIX FOR SPLIT LAYOUT IN DARK MODE ================= */
+
+/* Turn the "About Me" header white */
+body.dark .split-text h2 {
+  color: #ffffff;
+}
+
+/* Turn the paragraph text white (or light grey) */
+body.dark .split-text p {
+  color: #f1f1f1;
+}
+
 /* ================= MOBILE RESPONSIVE ================= */
 /* THIS MUST BE AT THE VERY BOTTOM */
 
@@ -335,9 +347,17 @@ body.dark .btn-download:hover {
 }
 
 /* Right Side (Image) */
-.split-image {
-  flex: 1; /* Takes up 1 "share" of space */
-  text-align: center; /* Centers image within its half */
+.split-image img {
+  width: 80%;
+  max-width: 200px; /* Set your desired size */
+
+  /* NEW: Forces a perfect square shape */
+  aspect-ratio: 1 / 1;
+
+  /* NEW: Cuts off the edges instead of squishing the image */
+  object-fit: cover;
+
+  border-radius: 10px; /* Use 50% if you want a circle */
 }
 
 .split-image img {
