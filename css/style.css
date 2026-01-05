@@ -348,8 +348,8 @@ body.dark .btn-download:hover {
 
 /* Right Side (Image) */
 .split-image img {
-  width: 80%;
-  max-width: 200px; /* Set your desired size */
+  width: 70%;
+  max-width: 150px; /* Set your desired size */
 
   /* NEW: Forces a perfect square shape */
   aspect-ratio: 1 / 1;
