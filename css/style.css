@@ -76,7 +76,7 @@ nav ul li a:hover::after {
 .hero {
   /* CHANGED: Changed from 100vh to auto so it fits the content size */
   min-height: auto;
-  padding-top: 100px;
+  padding-top: 120px;
   /* ADDED: Adds a little breathing room at the bottom */
   padding-bottom: 10px;
   text-align: center;
@@ -324,6 +324,7 @@ body.dark .btn-download:hover {
   max-width: 1100px; /* Limits width for large screens */
   margin: 0 auto 50px auto; /* 0px on top, 50px on bottom */
   padding: 0 20px;
+  padding-top: 40px;
 }
 
 /* Left Side (Text) */
@@ -348,7 +349,7 @@ body.dark .btn-download:hover {
 
 /* Right Side (Image) */
 .split-image img {
-  width: 70%;
+  width: 60%;
   max-width: 150px; /* Set your desired size */
 
   /* NEW: Forces a perfect square shape */
@@ -362,7 +363,7 @@ body.dark .btn-download:hover {
 
 .split-image img {
   width: 100%; /* Responsive width */
-  max-width: 400px; /* Prevents image from getting too huge */
+  max-width: 300px; /* Prevents image from getting too huge */
   border-radius: 10px; /* Optional: rounded corners */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Optional: shadow */
 }
