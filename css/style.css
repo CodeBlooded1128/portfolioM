@@ -28,6 +28,23 @@ body {
   z-index: 1000; /* Ensure nav stays on top */
 }
 
+.logo-img {
+  /* CHANGE THIS NUMBER to resize. Try 25px or 30px. */
+  height: 40px;
+
+  /* Keep this as 'auto' so the logo doesn't get squished or stretched */
+  width: auto;
+}
+
+/* ================= DARK MODE LOGO ================= */
+body.dark .logo-img {
+  /* Invert flips Black to White */
+  filter: invert(1);
+
+  /* Optional: If your logo is not pure black/white, this forces it to white */
+  /* filter: invert(1) brightness(100); */
+}
+
 .logo {
   font-weight: bold;
   letter-spacing: 2px;
@@ -76,7 +93,7 @@ nav ul li a:hover::after {
 .hero {
   /* CHANGED: Changed from 100vh to auto so it fits the content size */
   min-height: auto;
-  padding-top: 110px;
+  padding-top: 100px;
   /* ADDED: Adds a little breathing room at the bottom */
   padding-bottom: 10px;
   text-align: center;
@@ -378,5 +395,3 @@ body.dark .btn-download:hover {
   /* Optional: Use column-reverse if you want image ON TOP on mobile */
   /* .container-split { flex-direction: column-reverse; } */
 }
-
-
