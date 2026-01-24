@@ -1,10 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>My Work - Margaux Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -22,33 +27,35 @@
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#services">Services</a></li>
-          <li><a href="work.html" style="font-weight: bold">Work</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="index.html#mytechstack">Tech Stack</a></li>
+          <li><a href="index.html#whatido">Services</a></li>
+          <li><a href="work.html" class="active-page">Work</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
 
       <button id="themeToggle">⚫</button>
     </header>
 
-    <section class="section">
-      <div style="margin-top: 60px; margin-bottom: 40px; text-align: center">
-        <h1>Work Samples</h1>
+    <section class="section-work">
+      <div style="margin-top: 100px; margin-bottom: 60px; text-align: center">
+        <h1 class="hidden-element">Work Samples</h1>
       </div>
 
       <div class="work-grid">
-        <div class="work-card">
+        <div class="work-card hidden-element stagger-1">
           <a
             href="https://drive.google.com/drive/folders/116f7SZClsoAuxdYAQM4Nnmtlb9paKa8F?usp=drive_link"
             target="_blank"
             class="work-image-link"
           >
-            <img
-              src="assets/food&reviews.jpg"
-              alt="Food & Review"
-              class="work-image"
-            />
+            <div class="img-wrapper">
+              <img
+                src="assets/food&reviews.jpg"
+                alt="Food & Review"
+                class="work-image"
+              />
+            </div>
           </a>
 
           <h3>Food & Reviews</h3>
@@ -61,13 +68,15 @@
           >
         </div>
 
-        <div class="work-card">
+        <div class="work-card hidden-element stagger-2">
           <a
             href="https://drive.google.com/file/d/1dPY3-y7Yuz0UniE2UMo5kT4vH5L9KVtX/view?usp=drive_link"
             target="_blank"
             class="work-image-link"
           >
-            <img src="assets/ebook.jpg" alt="Ebook" class="work-image" />
+            <div class="img-wrapper">
+              <img src="assets/ebook.jpg" alt="Ebook" class="work-image" />
+            </div>
           </a>
           <h3>Ebook</h3>
           <a
@@ -78,17 +87,19 @@
           >
         </div>
 
-        <div class="work-card">
+        <div class="work-card hidden-element stagger-3">
           <a
             href="https://drive.google.com/drive/folders/11EcOYolZGYpyOhtG55oLuRp_O2eA5etl?usp=drive_link"
             target="_blank"
             class="work-image-link"
           >
-            <img
-              src="assets/PopUp&LandingPage.jpg"
-              alt="Popup and Landing Page"
-              class="work-image"
-            />
+            <div class="img-wrapper">
+              <img
+                src="assets/PopUp&LandingPage.jpg"
+                alt="Popup and Landing Page"
+                class="work-image"
+              />
+            </div>
           </a>
           <h3>Popup and Landing Page</h3>
           <a
@@ -99,13 +110,15 @@
           >
         </div>
 
-        <div class="work-card">
+        <div class="work-card hidden-element stagger-1">
           <a
             href="https://drive.google.com/file/d/1v-8s37julD0GXV30LtMClIJXhw8gksFg/view?usp=drive_link"
             target="_blank"
             class="work-image-link"
           >
-            <img src="assets/poster.jpg" alt="Posters" class="work-image" />
+            <div class="img-wrapper">
+              <img src="assets/poster.jpg" alt="Posters" class="work-image" />
+            </div>
           </a>
           <h3>Posters</h3>
           <a
@@ -116,17 +129,19 @@
           >
         </div>
 
-        <div class="work-card">
+        <div class="work-card hidden-element stagger-2">
           <a
             href="https://drive.google.com/file/d/1fCxTxyQJZA2iYn6Dn50538ToQg1fqvDe/view?usp=drive_link"
             target="_blank"
             class="work-image-link"
           >
-            <img
-              src="assets/corporate.jpg"
-              alt="Corporate"
-              class="work-image"
-            />
+            <div class="img-wrapper">
+              <img
+                src="assets/corporate.jpg"
+                alt="Corporate"
+                class="work-image"
+              />
+            </div>
           </a>
           <h3>Corporate</h3>
           <a
