@@ -1,7 +1,7 @@
 /* ================= BASE STYLES ================= */
 html {
   scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-  scroll-snap-type: y mandatory;
+  scroll-padding-top: 100px;
 }
 
 * {
@@ -617,3 +617,4 @@ body.dark .work-link:hover {
 body.dark .active-page {
   color: #fff !important;
 }
+
