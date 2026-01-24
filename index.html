@@ -1,12 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Margaux Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- LINK CSS -->
     <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header class="navbar">
@@ -30,7 +33,6 @@
         </ul>
       </nav>
 
-      <!-- DARK MODE TOGGLE -->
       <button id="themeToggle">⚫</button>
     </header>
 
@@ -50,31 +52,41 @@
       </div>
     </section>
 
-    <section class="container-split">
-      <div class="split-image">
-        <img src="assets/Profile Pic.jpg" alt="My Profile Picture" />
-      </div>
+    <section class="about-bg hidden-element">
+      <section class="container-split hidden-element">
+        <div class="split-image">
+          <img src="assets/Profile Pic.jpg" alt="My Profile Picture" />
+        </div>
 
-      <div class="split-text">
-        <h2>About Me</h2>
-        <p>
-          I’m a graphic designer who creates scroll-stopping visuals that help
-          brands get noticed. From eye-catching posts and ads to short-form
-          videos, I make content that’s on-brand, easy to engage with, and
-          tailored to your audience. I also plan content calendars and stay on
-          top of trends, so your designs don’t just look good—they drive
-          results.
-        </p>
-        <p>Ready to make something impactful?</p>
-      </div>
+        <div class="split-text">
+          <h2>About Me</h2>
+          <p>
+            I’m a graphic designer who creates scroll-stopping visuals that help
+            brands get noticed. From eye-catching posts and ads to short-form
+            videos, I make content that’s on-brand, easy to engage with, and
+            tailored to your audience. I also plan content calendars and stay on
+            top of trends, so your designs don’t just look good—they drive
+            results.
+          </p>
+          <p>Ready to make something impactful?</p>
+        </div>
+      </section>
     </section>
 
-    <section class="section" id="mytechstack">
+    <section class="section hidden-element" id="mytechstack">
       <h2>My Tech Stack</h2>
-      <p>Canva • CapCut • WordPress • Kajabi • ClickUp • HubSpot • Mailchimp</p>
+      <div class="tech-stack-container">
+        <span class="tech-tag">Canva</span>
+        <span class="tech-tag">CapCut</span>
+        <span class="tech-tag">WordPress</span>
+        <span class="tech-tag">Kajabi</span>
+        <span class="tech-tag">ClickUp</span>
+        <span class="tech-tag">HubSpot</span>
+        <span class="tech-tag">Mailchimp</span>
+      </div>
     </section>
 
-    <section class="section alt" id="whatido">
+    <section class="section alt hidden-element" id="whatido">
       <h2>What I Do</h2>
       <p>
         Social Media Content • Branding Visuals • Content Planning & Calendar
@@ -87,7 +99,6 @@
       <p>© 2026 MARGAUX REMOJO</p>
     </footer>
 
-    <!-- LOAD JS LAST -->
     <script src="js/script.js"></script>
   </body>
 </html>
