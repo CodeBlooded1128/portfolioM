@@ -1,17 +1,62 @@
 /* ================= BASE STYLES ================= */
+html {
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+  scroll-snap-type: y mandatory;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif; /* Modern Font */
 }
 
 body {
   background: #ffffff;
   color: #111;
-  transition: background 0.3s, color 0.3s;
-  /* Prevent horizontal scroll on mobile */
+  transition:
+    background 0.3s,
+    color 0.3s;
   overflow-x: hidden;
+}
+
+/* ================= ANIMATIONS (NEW) ================= */
+
+/* 1. Fade Up Animation Keyframes */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. Floating Animation for Profile Pic */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* 3. The "Hidden" class for Scroll Animation */
+.hidden-element {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out; /* Smooth slide up speed */
+}
+
+.show-element {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ===== NAVBAR ===== */
@@ -23,26 +68,30 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e5e5;
-  z-index: 1000; /* Ensure nav stays on top */
+
+  /* GLASSMORPHISM EFFECT */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 .logo-img {
-  /* CHANGE THIS NUMBER to resize. Try 25px or 30px. */
   height: 40px;
-
-  /* Keep this as 'auto' so the logo doesn't get squished or stretched */
   width: auto;
+  transition: transform 0.3s ease;
 }
 
-/* ================= DARK MODE LOGO ================= */
-body.dark .logo-img {
-  /* Invert flips Black to White */
-  filter: invert(1);
+.logo-img:hover {
+  transform: rotate(-5deg) scale(1.1); /* Wiggle effect on logo */
+}
 
-  /* Optional: If your logo is not pure black/white, this forces it to white */
-  /* filter: invert(1) brightness(100); */
+/* DARK MODE LOGO */
+body.dark .logo-img {
+  filter: invert(1);
 }
 
 .logo {
@@ -64,6 +113,7 @@ nav ul li a {
   color: #111;
   font-size: 14px;
   position: relative;
+  font-weight: 600;
 }
 
 nav ul li a::after {
@@ -72,7 +122,7 @@ nav ul li a::after {
   left: 0;
   bottom: -5px;
   width: 0;
-  height: 1px;
+  height: 2px;
   background: #111;
   transition: 0.3s;
 }
@@ -87,33 +137,64 @@ nav ul li a:hover::after {
   padding: 6px 10px;
   cursor: pointer;
   font-size: 16px;
+  margin-left: 20px;
+  border-radius: 5px;
 }
 
 /* ===== HERO ===== */
 .hero {
-  /* CHANGED: Changed from 100vh to auto so it fits the content size */
-  min-height: auto;
-  padding-top: 100px;
-  /* ADDED: Adds a little breathing room at the bottom */
-  padding-bottom: 10px;
-  text-align: center;
+  /* CHANGED: 100vh ensures it fills the full screen height */
+  min-height: 100vh;
+  width: 100%; /* Ensures it fills full width */
+
+  /* This centers the content vertically and horizontally */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  /* CHANGED: Reduced padding since Flexbox does the centering now. 
+     We keep a little top padding to account for the fixed navbar visually. */
+  padding-top: 80px;
+  padding-bottom: 20px;
 }
 
+/* ... keep your h1 and p styles below as they were ... */
 .hero h1 {
-  font-size: 46px;
+  font-size: 56px;
   margin-bottom: 20px;
-  max-width: 800px; /* Prevent text spanning too wide */
+  max-width: 900px;
   padding: 0 10px;
+
+  /* Initial Animation */
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out forwards;
+  animation-delay: 0.1s;
 }
 
 .hero p {
   color: #555;
-  font-size: 18px;
-  margin-bottom: 30px;
+  font-size: 20px;
+  margin-bottom: 40px;
   padding: 0 10px;
+
+  /* Initial Animation */
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+
+  /* Initial Animation */
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out forwards;
+  animation-delay: 0.5s;
 }
 
 .hero button {
@@ -122,67 +203,196 @@ nav ul li a:hover::after {
   background: #111;
   color: #fff;
   cursor: pointer;
+  font-weight: 600;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
-/* ===== SECTIONS ===== */
+.btn-download {
+  padding: 14px 36px;
+  border: 1px solid #111;
+  background: transparent;
+  color: #111;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover effects for buttons */
+.hero button:hover,
+.btn-download:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-download:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* ===== SECTIONS (Full Screen) ===== */
 .section {
-  /* CHANGED: Reduced from 120px to 60px to remove the huge gap */
-  padding: 60px 20px;
+  /* 1. MAKE IT FULL SCREEN */
+  min-height: 100vh; /* Minimum height is 100% of the screen */
+  width: 100%; /* Full width */
+
+  /* 2. CENTER CONTENT VERTICALLY & HORIZONTALLY */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers vertically */
+  align-items: center; /* Centers horizontally */
+
+  padding: 40px 20px; /* Reduced padding since flex centers it now */
   text-align: center;
 }
 
+/* Keep the rest the same */
 .section.alt {
-  background: #f7f7f7;
+  background: #f9f9f9;
 }
 
 .section h2 {
-  font-size: 32px;
-  margin-bottom: 20px;
+  font-size: 36px;
+  margin-bottom: 30px;
 }
 
 .section p {
   color: #555;
-}
-
-/* ===== WORK GRID (For work.html) ===== */
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  max-width: 1200px;
+  font-size: 18px;
+  max-width: 800px;
   margin: 0 auto;
-  text-align: left;
 }
 
-.work-card {
-  border: 1px solid #e5e5e5;
-  padding: 20px;
-  transition: transform 0.3s ease;
+/* ===== NEW TECH TAGS STYLING ===== */
+.tech-stack-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.work-card:hover {
-  transform: translateY(-5px);
+.tech-tag {
+  background: #eef0f2;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #333;
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    color 0.2s;
+  cursor: default;
 }
 
-.work-image {
-  width: 100%;
-  height: 200px;
-  background-color: #f0f0f0;
+.tech-tag:hover {
+  transform: scale(1.1);
+  background: #111;
+  color: #fff;
+}
+
+.container-split {
+  width: 100%; /* Ensures it goes edge-to-edge */
+  background-color: #f7f7f7; /* Your background color */
+}
+/* ================= FIX FOR ABOUT ME IN DARK MODE ================= */
+
+/* When body is dark, change the About Me background to dark grey */
+body.dark .container-split,
+body.dark .about-bg {
+  background-color: #1a1a1a; /* Matches your other dark sections */
+}
+
+/* ===== CONTAINER SPLIT (About Me) ===== */
+.container-split {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  margin: 0 auto;
+  background-color: #f7f7f7;
+  padding: 100px 20px;
+}
+
+/* ================= ABOUT ME SECTION ================= */
+
+/* 1. THE OUTER WRAPPER (Handles the Background) */
+.about-bg {
+  width: 100%; /* Forces it to touch screen edges */
+  background-color: #f7f7f7; /* The gray color */
+  padding: 100px 20px; /* Moves the padding here */
+}
+
+/* 2. THE INNER CONTAINER (Handles the Layout) */
+.container-split {
+  /* Layout logic */
+  display: flex;
+  align-items: center;
+  gap: 60px;
+
+  /* Centering logic */
+  max-width: 1100px; /* Keeps content neat in the middle */
+  margin: 0 auto; /* Centers the container */
+
+  /* REMOVED: background-color (It's on the parent now) */
+  /* REMOVED: padding (It's on the parent now) */
+}
+
+/* Mobile Responsiveness (No changes needed, but good to double check) */
+@media (max-width: 768px) {
+  .container-split {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.split-text {
+  flex: 1;
+}
+
+.split-text h2 {
+  font-size: 36px;
   margin-bottom: 20px;
+  color: #111;
 }
 
-.work-card a {
-  text-decoration: none;
-  color: #111;
-  font-weight: bold;
+.split-text p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.split-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.split-image img {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 20px;
+
+  /* NEW: Shadow block effect + Float Animation */
+  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.1);
+  animation: float 4s ease-in-out infinite;
 }
 
 /* ===== FOOTER ===== */
 footer {
   text-align: center;
-  padding: 30px;
+  padding: 40px;
   border-top: 1px solid #e5e5e5;
-  color: #555;
+  color: #666;
+  font-size: 14px;
 }
 
 /* ================= DARK MODE ================= */
@@ -192,8 +402,8 @@ body.dark {
 }
 
 body.dark .navbar {
-  background: #111;
-  border-bottom: 1px solid #333;
+  background: rgba(17, 17, 17, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 body.dark nav ul li a {
@@ -205,27 +415,47 @@ body.dark nav ul li a::after {
 }
 
 body.dark .hero p,
-body.dark .section p {
-  color: #aaa;
+body.dark .section p,
+body.dark .split-text p {
+  color: #bbb;
 }
 
 body.dark .section.alt {
   background: #1a1a1a;
 }
 
-body.dark .work-card {
-  border-color: #333;
-}
-body.dark .work-image {
-  background-color: #222;
-}
-body.dark .work-card a {
+body.dark .split-text h2 {
   color: #fff;
+}
+
+body.dark .btn-download {
+  border-color: #f1f1f1;
+  color: #f1f1f1;
+}
+
+body.dark .btn-download:hover {
+  background: #f1f1f1;
+  color: #111;
+}
+
+/* Dark Mode Tech Tags */
+body.dark .tech-tag {
+  background: #222;
+  color: #ddd;
+}
+body.dark .tech-tag:hover {
+  background: #f1f1f1;
+  color: #111;
+}
+
+/* Dark Mode Image Shadow */
+body.dark .split-image img {
+  box-shadow: 15px 15px 0px rgba(255, 255, 255, 0.1);
 }
 
 body.dark footer {
   border-top: 1px solid #333;
-  color: #aaa;
+  color: #888;
 }
 
 body.dark button {
@@ -238,27 +468,17 @@ body.dark #themeToggle {
   color: #f1f1f1;
 }
 
-/* ================= FIX FOR SPLIT LAYOUT IN DARK MODE ================= */
-
-/* Turn the "About Me" header white */
-body.dark .split-text h2 {
-  color: #ffffff;
-}
-
-/* Turn the paragraph text white (or light grey) */
-body.dark .split-text p {
-  color: #f1f1f1;
-}
-
 /* ================= MOBILE RESPONSIVE ================= */
-/* THIS MUST BE AT THE VERY BOTTOM */
-
 @media (max-width: 768px) {
-  /* Navbar Changes */
   .navbar {
     flex-direction: column;
     padding: 15px;
-    position: relative; /* Un-fix header so it doesn't cover screen */
+    position: relative;
+    background: #fff; /* Remove glass on mobile for better perf */
+  }
+
+  body.dark .navbar {
+    background: #111;
   }
 
   .navbar .logo {
@@ -275,123 +495,125 @@ body.dark .split-text p {
     margin: 5px 10px;
   }
 
-  /* Text Resizing */
-  .hero {
-    padding-top: 40px;
-  }
-
   .hero h1 {
-    font-size: 32px;
+    font-size: 36px;
   }
 
-  .section {
-    padding: 60px 20px;
+  .container-split {
+    flex-direction: column;
+    text-align: center;
+    padding: 120px 20px;
   }
 
-  /* Work Grid Adjustments */
-  .work-grid {
-    grid-template-columns: 1fr; /* 1 column on mobile */
+  .split-text p {
+    text-align: center; /* Center text on mobile */
   }
 }
 
-/* ================= DOWNLOAD BUTTON STYLES ================= */
+/* ================= WORK PAGE STYLES ================= */
 
-/* 1. Group the buttons so they have space between them */
-.hero-buttons {
-  display: flex;
-  gap: 20px; /* Space between the two buttons */
-  justify-content: center; /* Center them */
-  margin-top: 20px;
+/* 1. STAGGERED ANIMATION DELAYS */
+/* This makes the cards appear one after another, not all at once */
+.stagger-1 {
+  transition-delay: 0.1s;
+}
+.stagger-2 {
+  transition-delay: 0.2s;
+}
+.stagger-3 {
+  transition-delay: 0.3s;
 }
 
-/* 2. Style the Link to look like a Button */
-.btn-download {
-  padding: 14px 36px;
-  border: 1px solid #111;
-  background: transparent; /* Transparent background for "Ghost button" look */
-  color: #111;
-  text-decoration: none; /* Remove underline */
-  font-size: 14px; /* Match standard button font size */
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* 2. CARD HOVER EFFECTS */
+.work-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  padding: 20px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden; /* Keeps the zoomed image inside the box */
 }
 
-/* Hover effect */
-.btn-download:hover {
-  background: #111;
+/* Lift up the card on hover */
+.work-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border-color: transparent;
+}
+
+/* 3. IMAGE ZOOM EFFECT (Medium Size) */
+.img-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+
+  /* --- THE FIX: MEDIUM SIZE --- */
+  width: 100%;
+  max-width: 300px; /* Increased from 220px to 300px */
+
+  margin: 0 auto 20px auto; /* Keeps it centered */
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.work-image {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Keeps the square shape */
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Zoom effect remains the same */
+.work-card:hover .work-image {
+  transform: scale(1.08);
+}
+
+/* 4. TYPOGRAPHY & LINKS */
+.work-card h3 {
+  margin: 15px 0 10px 0;
+  font-size: 20px;
+}
+
+.work-link {
+  color: #555;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  transition: color 0.2s;
+}
+
+.work-link:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* 5. ACTIVE NAVBAR LINK */
+/* Highlights the current page in the menu */
+.active-page {
+  color: #000 !important;
+  font-weight: 800;
+}
+
+.active-page::after {
+  width: 100% !important; /* Force the underline to stay */
+}
+
+/* DARK MODE ADJUSTMENTS FOR WORK PAGE */
+body.dark .work-card {
+  background: #1a1a1a;
+  border-color: #333;
+}
+body.dark .work-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  background: #222;
+}
+body.dark .work-link {
+  color: #aaa;
+}
+body.dark .work-link:hover {
   color: #fff;
 }
-
-/* --- Dark Mode Adjustments for the new button --- */
-body.dark .btn-download {
-  border-color: #f1f1f1;
-  color: #f1f1f1;
-}
-
-body.dark .btn-download:hover {
-  background: #f1f1f1;
-  color: #111;
-}
-
-/* Container holding both sides */
-.container-split {
-  display: flex; /* Sets them side-by-side */
-  align-items: center; /* Centers text vertically */
-  gap: 40px; /* Adds space between text and image */
-  max-width: 1100px; /* Limits width for large screens */
-  margin: 0 auto 50px auto; /* 0px on top, 50px on bottom */
-  padding: 0 20px;
-  padding-top: 40px;
-}
-
-/* Left Side (Text) */
-.split-text {
-  flex: 1; /* Takes up 1 "share" of space */
-}
-
-.split-text h2 {
-  font-size: 2rem;
-  margin-bottom: 15px;
-  color: #333;
-}
-
-.split-text p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #555;
-  margin-bottom: 5px;
-  /* ADD THIS LINE: */
-  text-align: justify;
-}
-
-/* Right Side (Image) */
-.split-image img {
-  width: 60%;
-  max-width: 150px; /* Set your desired size */
-
-  /* NEW: Forces a perfect square shape */
-  aspect-ratio: 1 / 1;
-
-  /* NEW: Cuts off the edges instead of squishing the image */
-  object-fit: cover;
-
-  border-radius: 10px; /* Use 50% if you want a circle */
-}
-
-.split-image img {
-  width: 100%; /* Responsive width */
-  max-width: 300px; /* Prevents image from getting too huge */
-  border-radius: 10px; /* Optional: rounded corners */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Optional: shadow */
-}
-
-/* --- Mobile Responsiveness --- */
-@media (max-width: 768px) {
-  .container-split {
-    flex-direction: column; /* Stack them vertically */
-    text-align: center; /* Center text for mobile */
-  }
-
-  /* Optional: Use column-reverse if you want image ON TOP on mobile */
-  /* .container-split { flex-direction: column-reverse; } */
+body.dark .active-page {
+  color: #fff !important;
 }
